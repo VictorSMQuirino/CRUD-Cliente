@@ -37,7 +37,7 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestCliente $request)
     {
         try{
             $cliente = new Cliente();
@@ -110,9 +110,31 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestCliente $request, $id)
     {
-        //
+        try{
+            $cliente = Cliente::find($id);
+            $cliente->nome = $request->nome_cliente;
+            $cliente->cpf = $request->cpf_cliente;
+            $cliente->telefone = $request->telefone_cliente;
+            $cliente->profissao = $request->profissao_cliente;
+            $cliente->email = $request->email_cliente;
+            $cliente->sexo = $request->sexo_cliente;
+            $cliente->endereco = $request->endereco_cliente;
+
+            DB::transaction(function() use ($cliente){
+                $cliente->save();
+            });
+
+            Session::flash('mensagem', 'Cliente atualizado!');
+            return Redirect::to('/cliente');
+
+        } catch(\Exception $error){
+            Session::flas('mensagem', 'Ocorreu um erro. Não foi possível atualizar.');
+            return back()->withInput(); //Retorna com os campos preenchidos
+        }
+
+        return Redirect::to('/cliente/'.$cliente->id.'/edit');
     }
 
     /**
@@ -123,6 +145,12 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $cliente = Cliente::find($id);
+            $cliente->delete();
+            return response()->json(array('status' =>"OK"));
+        } catch(\Exception $erro){
+            return response()->json(array('erro' =>"ERRO"));
+        }
     }
 }

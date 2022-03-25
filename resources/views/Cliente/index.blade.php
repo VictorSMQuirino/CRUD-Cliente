@@ -12,6 +12,15 @@
 
 @section('conteudo')
     <div class="card">
+
+    @if(Session::has('mensagem')) 
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h5><i class="icon fas fa-ban"></i>Atenção!</h5>
+            {{Session::get('mensagem')}}
+        </div>
+    @endif
+
         <div class="card-body">
             <div class="container">
                 <h2>Listagem dos Clientes</h2>
