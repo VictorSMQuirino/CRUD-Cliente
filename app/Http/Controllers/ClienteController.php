@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Cliente;
-
 use Redirect;
+use Illuminate\Support\Facades\DB;
+use Session;
+use Datatables;
 
 class ClienteController extends Controller
 {
@@ -17,7 +18,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('Cliente.index');
     }
 
     /**
@@ -38,7 +39,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $cliente = new Cliente();
+            $cliente->nome = $request->nome_cliente;
+            $cliente->cpf = $request->cpf_cliente;
+            $cliente->telefone = $request->telefone_cliente;
+            $cliente->profissao = $request->profissao_cliente;
+            $cliente->email = $request->email_cliente;
+            $cliente->sexo = $request->sexo_cliente;
+            $cliente->endereco = $request->endereco_cliente;
+
+            DB::transaction(function() use ($cliente){
+                $cliente->save();
+            });
+
+            Session::flash('mensagem', 'Cliente cadastrado!');
+            return Redirect::to('/cliente');
+
+        } catch(\Exception $error){
+            Session::flas('mensagem', 'Ocorreu um erro. Não foi possível cadastrar.');
+            return back()->withInput(); //Retorna com os campos preenchidos
+        }
     }
 
     /**
@@ -49,7 +70,25 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::get();
+        return Datatables::of($cliente)
+        ->editColumn('acao', function($cliente){
+            return '<div class="btn-group btn-group-sm">
+                        <a href="/cliente/'.$cliente->id.'/edit"
+                            class="btn btn-info"
+                            title="Editar" data-toggle="tooltip">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a href="#"
+                            class="btn btn-danger btnExcluir"
+                            data-id="'.$cliente->id.'"
+                            title="Excluir" data-toggle="tooltip">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>';
+        })
+        ->escapeColumns([0])
+        ->make(true);
     }
 
     /**
@@ -60,7 +99,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('Cliente.edit', compact('cliente'));
     }
 
     /**

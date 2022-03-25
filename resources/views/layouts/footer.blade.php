@@ -1,5 +1,5 @@
 <footer>
     <div class="col-12" align="center">
-        <p>Copyright © 2022. Feito em Jequié, Bahia.</p>
+        <p>Copyright Â© 2022. Feito em JequiÃ©, Bahia.</p>
     </div>
 </footer>
