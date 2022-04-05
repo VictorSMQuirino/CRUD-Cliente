@@ -53,7 +53,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-2">
-                            <label>ProfissÃ£o</label>
+                            <label>Profissão</label>
                             <input type="text" name="profissao_cliente" class="form-control @error('profissao_cliente') is-invalid @enderror" value="{{$cliente->profissao}}">
                             @error('profissao_cliente')
                             <span class="invalid-feedback" role="alert">
@@ -72,14 +72,14 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label>Sexo</label>
-                            <select name="sexo_cliente" class="form-control form-control-sm" value="{{$cliente->sexo}}">
+                            <select id="valor_sexo" name="sexo_cliente" class="form-control form-control-sm" value="{{$cliente->sexo}}">
                                 <option>Selecione</option>
                                 <option>Masculino</option>
                                 <option>Feminino</option>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label>EndereÃ§o</label>
+                            <label>Endereço</label>
                             <textarea name="endereco_cliente" row="10" class="form-control @error('endereco_cliente') is-invalid @enderror">{{$cliente->endereco}}</textarea>
                             @error('endereco_cliente')
                             <span class="invalid-feedback" role="alert">

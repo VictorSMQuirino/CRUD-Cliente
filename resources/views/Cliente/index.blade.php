@@ -1,20 +1,20 @@
 @extends('layouts.app')
 @section('htmlheader_titulo', 'Clientes')
 
+@section('links_adicionais')
+    <link rel="stylesheet" href="{{asset('plugins/AdminLTE-3.2.0-rc/plugins/DataTables/datatables.min.css')}}">
+@endsection
+
 @section('scripts_adicionais')
     <script src="{{asset('plugins/AdminLTE-3.2.0-rc/plugins/DataTables/datatables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/listar_clientes.js')}}"></script>
-@endsection
-
-@section('links_adicionais')
-    <link rel="stylsheet" href="{{asset('plugins/AdminLTE-3.2.0-rc/plugins/DataTables/datatables.min.css')}}">
 @endsection
 
 @section('conteudo')
     <div class="card">
 
     @if(Session::has('mensagem')) 
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h5><i class="icon fas fa-ban"></i>Atenção!</h5>
             {{Session::get('mensagem')}}
@@ -32,7 +32,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>cpf</th>
+                            <th>CPF</th>
                             <th>Telefone</th>
                             <th>Profissão</th>
                             <th>Email</th>

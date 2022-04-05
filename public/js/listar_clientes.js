@@ -3,11 +3,11 @@ $(document).ready(function($){
     var table = $("#cliente").DataTable({
         ajax: base_url+"/cliente/show",
         serverSide: true,
-        reponsive: true,
+        responsive: true,
         processing: true,
         searching: true,
         "order":[0,"desc"],
-        columns:[
+        columns: [
             {"width":"5%",data:"id",name:"id"},
             {"width":"15%%",data:"nome",name:"nome"},
             {"width":"10%",data:"cpf",name:"cpf"},
@@ -24,7 +24,7 @@ $(document).ready(function($){
         id = $(this).data('id')
         $.ajax({
             type: "delete",
-            url: base_url + "/cliente/"+"id",
+            url: base_url + "/cliente/"+id,
             dataType:'json',
             crossDomain: true,
             contentType: "application/json",

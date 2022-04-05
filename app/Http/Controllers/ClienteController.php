@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RequestCliente;
 use App\Cliente;
 use Redirect;
+use DataTables;
 use Illuminate\Support\Facades\DB;
 use Session;
-use Datatables;
+
 
 class ClienteController extends Controller
 {
@@ -57,7 +59,7 @@ class ClienteController extends Controller
             return Redirect::to('/cliente');
 
         } catch(\Exception $error){
-            Session::flas('mensagem', 'Ocorreu um erro. Não foi possível cadastrar.');
+            Session::flash('mensagem', 'Ocorreu um erro. Não foi possível cadastrar.');
             return back()->withInput(); //Retorna com os campos preenchidos
         }
     }
@@ -71,7 +73,7 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = Cliente::get();
-        return Datatables::of($cliente)
+        return DataTables::of($cliente)
         ->editColumn('acao', function($cliente){
             return '<div class="btn-group btn-group-sm">
                         <a href="/cliente/'.$cliente->id.'/edit"
@@ -86,9 +88,9 @@ class ClienteController extends Controller
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>';
-        })
-        ->escapeColumns([0])
-        ->make(true);
+            })
+          ->escapeColumns([0])
+            ->make(true);
     }
 
     /**
@@ -110,7 +112,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestCliente $request, $id)
+    public function update(Request $request, $id)
     {
         try{
             $cliente = Cliente::find($id);

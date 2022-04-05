@@ -2,9 +2,8 @@
 <html lang="pt-br">
     @section('htmlheader')
         @include('layouts.htmlheader')
-        @yield('scripts_adicionais')
         @yield('links_adicionais')
-
+        @yield('scripts_adicionais')
     @show 
 <body>
     @yield('conteudo')

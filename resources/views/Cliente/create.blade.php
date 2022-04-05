@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label>Sexo</label>
-                            <select name="sexo_cliente" class="form-control form-control-sm">
+                            <select id="valor_sexo" name="sexo_cliente" class="form-control form-control-sm">
                                 <option>Selecione</option>
                                 <option>Masculino</option>
                                 <option>Feminino</option>
