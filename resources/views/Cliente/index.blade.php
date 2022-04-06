@@ -22,7 +22,7 @@
     @elseif(Session::has('falha'))
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">x</button>
-            <h5><i class="icon fa-solid fa-triangle-exclamation"></i>Atenção!</h5>
+            <h5><i class="icon fas fa-exclamation-triangle"></i>Atenção!</h5>
             {{Session::get('falha')}}
         </div>    
     @endif

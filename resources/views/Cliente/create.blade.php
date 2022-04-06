@@ -23,7 +23,7 @@
         @if(Session::has('mensagem')) 
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">x</button>
-                <h5><i class="icon fas fa-ban"></i>Atenção!</h5>
+                <h5><i class="icon fas fa-ban"></i>AtenÃ§Ã£o!</h5>
                 {{Session::get('mensagem')}}
             </div>
         @endif
