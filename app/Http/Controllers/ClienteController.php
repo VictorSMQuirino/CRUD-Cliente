@@ -55,11 +55,11 @@ class ClienteController extends Controller
                 $cliente->save();
             });
 
-            Session::flash('mensagem', 'Cliente cadastrado!');
+            Session::flash('sucesso', 'Cliente cadastrado!');
             return Redirect::to('/cliente');
 
         } catch(\Exception $error){
-            Session::flash('mensagem', 'Ocorreu um erro. Não foi possível cadastrar.');
+            Session::flash('falha', 'Ocorreu um erro. Não foi possível cadastrar.');
             return back()->withInput(); //Retorna com os campos preenchidos
         }
     }
@@ -128,11 +128,11 @@ class ClienteController extends Controller
                 $cliente->save();
             });
 
-            Session::flash('mensagem', 'Cliente atualizado!');
+            Session::flash('sucesso', 'Cliente atualizado!');
             return Redirect::to('/cliente');
 
         } catch(\Exception $error){
-            Session::flas('mensagem', 'Ocorreu um erro. Não foi possível atualizar.');
+            Session::flas('falha', 'Ocorreu um erro. Não foi possível atualizar.');
             return back()->withInput(); //Retorna com os campos preenchidos
         }
 

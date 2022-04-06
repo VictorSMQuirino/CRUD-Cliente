@@ -25,12 +25,12 @@ class RequestCliente extends FormRequest
     {
         return [
             'nome_cliente' => ['required', 'string', 'max:255', 'regex:/^([a-zA-Zà-úÀ-Ú]|-|_|\s)+$/'],
-            'cpf_cliente' => ['required', 'numeric', 'max:11'],
-            'telefone_cliente' => ['required', 'numeric', 'max:255'],
+            'cpf_cliente' => ['required', 'string', 'max:14'],
+            'telefone_cliente' => ['required', 'string', 'max:255'],
             'profissao_cliente' => ['required', 'string', 'max:255'],
             'email_cliente' => ['required', 'string','regex:/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i'],
             'sexo_cliente' => ['required', 'string'],
-            'endereco_cliente' => ['required', 'string', 'max:255', 'regex:/^([a-zA-Zà-úÀ-Ú]|-|_|\s)+$/']
+            'endereco_cliente' => ['required', 'string', 'max:255']
         ];
     }
 }

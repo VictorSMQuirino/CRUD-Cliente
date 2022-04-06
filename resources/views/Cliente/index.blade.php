@@ -13,12 +13,18 @@
 @section('conteudo')
     <div class="card">
 
-    @if(Session::has('mensagem')) 
-        <div class="alert alert-info alert-dismissible">
+    @if(Session::has('sucesso')) 
+        <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">x</button>
-            <h5><i class="icon fas fa-ban"></i>Atenção!</h5>
-            {{Session::get('mensagem')}}
+            <h5><i class="icon fas fa-check-circle"></i>Atenção!</h5>
+            {{Session::get('sucesso')}}
         </div>
+    @elseif(Session::has('falha'))
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h5><i class="icon fa-solid fa-triangle-exclamation"></i>Atenção!</h5>
+            {{Session::get('falha')}}
+        </div>    
     @endif
 
         <div class="card-body">
